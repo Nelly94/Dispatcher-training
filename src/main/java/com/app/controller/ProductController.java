@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class HomeController {
+public class ProductController {
 
-    @GetMapping("/home")
-    public String home(@RequestParam(required = false, defaultValue = "World") String username, Model model){
-        model.addAttribute("username", username);
-        return "home";
+    @GetMapping("/product")
+    public String product(@RequestParam int id, Model model){
+        model.addAttribute("id",id);
+        return "product";
     }
 }

@@ -1,11 +1,9 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home</title>
+    <title>Product</title>
 </head>
 <body>
-<h1>Hello ${username}!</h1>
-
+    <h1>Price: ${id * 2}</h1>
 </body>
 </html>
