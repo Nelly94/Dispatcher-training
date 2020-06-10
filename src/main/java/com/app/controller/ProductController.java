@@ -2,9 +2,11 @@ package com.app.controller;
 
 import com.app.dao.ProductRepository;
 import com.app.model.Product;
+import com.app.model.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -28,11 +30,15 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String addProduct(@ModelAttribute("product") Product product, Model model){
+    public String addProduct(@ModelAttribute("product") Product product, BindingResult result, Model model){
+        new ProductValidator().validate(product, result);
+        if(result.hasErrors()){
+            return "add-product";
+        }
         model.addAttribute("description", product.getDescription());
         model.addAttribute("price", product.getPrice());
         productRepository.save(product);
-        return "product";
+        return "redirect:/home";
     }
 
     @GetMapping("/add")

@@ -9,7 +9,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String brand;
+    private String name;
 
     private String description;
 
@@ -20,7 +20,7 @@ public class Product {
     }
 
     public Product(String brand, String description, int price) {
-        this.brand = brand;
+        this.name = brand;
         this.description = description;
         this.price = price;
     }
@@ -33,12 +33,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getName() {
+        return name;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -62,7 +62,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", brand='" + brand + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';
