@@ -4,6 +4,7 @@
     <title>Product</title>
 </head>
 <body>
-    <h1>Price: ${id * 2}</h1>
+    <h1>Description: ${description}</h1>
+    <h1>Price: ${price}</h1>
 </body>
 </html>
