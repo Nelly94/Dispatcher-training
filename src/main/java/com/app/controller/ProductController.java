@@ -1,29 +1,49 @@
 package com.app.controller;
 
+import com.app.dao.ProductRepository;
+import com.app.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
 
 @Controller
+@Transactional
 @RequestMapping("/products")
 public class ProductController {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @ModelAttribute("product")
+    public Product initProduct(){
+        return new Product();
+    }
 
     @GetMapping
     public String getList(){
         return "products";
     }
 
+    @PostMapping("/add")
+    public String addProduct(@ModelAttribute("product") Product product, Model model){
+        model.addAttribute("description", product.getDescription());
+        model.addAttribute("price", product.getPrice());
+        productRepository.save(product);
+        return "product";
+    }
+
     @GetMapping("/add")
-    public String addProduct(){
+    public String addProduct(@ModelAttribute("product") Product product) {
         return "add-product";
     }
 
     @GetMapping("/edit/{idProduct}")
-    public String editProduct(@PathVariable int idProduct, Model model){
-        model.addAttribute("id",idProduct);
+    public String editProduct(@PathVariable long idProduct, @ModelAttribute("product") Product product, Model model){
+        Product p = productRepository.getOne(idProduct);
+        model.addAttribute("product", p);
         return "add-product";
     }
 
