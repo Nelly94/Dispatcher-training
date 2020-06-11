@@ -13,7 +13,7 @@
 </head>
 <body>
 <c:if test = "${error == true}">
-    <h1 cssClass="error">Invalid login</h1>
+    <h1 class="error">Invalid login</h1>
 </c:if>
 <form action="" method="POST">
     <table>
