@@ -1,11 +1,14 @@
 package com.app.model;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -56,5 +59,11 @@ public class PrincipalUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public @interface IsAdmin{
+
     }
 }
