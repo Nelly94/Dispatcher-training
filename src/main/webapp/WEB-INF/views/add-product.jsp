@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <style type="text/css">
     .error{
         color:darkred;
@@ -36,6 +38,8 @@
 
     <form:label path="price">Price</form:label>
     <form:input type="number" path="price" value="${product.price}"/>
+
+
 
     <button type="submit">Create product</button>
 </form:form>
